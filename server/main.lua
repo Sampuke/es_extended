@@ -168,7 +168,7 @@ local function loadESXPlayer(identifier, playerId, isNew)
     -- Metadata
     userData.metadata                    = (result.metadata and result.metadata ~= "") and json.decode(result.metadata) or userData.metadata
 
-    local xPlayer                        = CreateExtendedPlayer(playerId, identifier, userData.groups, userData.group, userData.accounts, userData.inventory, userData.weight, userData.job, userData.loadout, userData.playerName, userData.metadata)
+    local xPlayer                        = CreateExtendedPlayer(playerId, identifier, userData.groups, userData.group, userData.accounts, userData.inventory, userData.weight, userData.job, userData.loadout, userData.playerName, userData.metadata, userData.stateid)
     ESX.Players[playerId]                = xPlayer
     Core.PlayersByIdentifier[identifier] = xPlayer
 
@@ -188,7 +188,8 @@ local function loadESXPlayer(identifier, playerId, isNew)
             groups = xPlayer.getGroups(),
             coords = userData.coords,
             identifier = xPlayer.getIdentifier(),
-            identifier = xPlayer.getStateid(),            inventory = xPlayer.getInventory(),
+            stateid = userData.stateid
+            inventory = xPlayer.getInventory(),
             job = xPlayer.getJob(),
             loadout = xPlayer.getLoadout(),
             maxWeight = xPlayer.getMaxWeight(),
