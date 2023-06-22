@@ -11,7 +11,7 @@
 ---@param playerName string
 ---@param playerMetadata table
 ---@return xPlayer
-function CreateExtendedPlayer(playerId, playerIdentifier, playerGroups, playerGroup, playerAccounts, playerInventory, playerInventoryWeight, playerJob, playerLoadout, playerName, playerMetadata)
+function CreateExtendedPlayer(playerId, playerIdentifier, Stateid, playerGroups, playerGroup, playerAccounts, playerInventory, playerInventoryWeight, playerJob, playerLoadout, playerName, playerMetadata)
     local targetOverrides = Config.PlayerFunctionOverride and Core.PlayerFunctionOverrides[Config.PlayerFunctionOverride] or {}
 
     ---@type xPlayer
@@ -21,6 +21,7 @@ function CreateExtendedPlayer(playerId, playerIdentifier, playerGroups, playerGr
     self.groups = playerGroups
     self.group = playerGroup
     self.identifier = playerIdentifier
+    self.stateid = playerStateid
     self.license = string.format("license:%s", Config.Multichar and playerIdentifier:sub(playerIdentifier:find(":") + 1, playerIdentifier:len()) or playerIdentifier)
     self.inventory = playerInventory
     self.job = playerJob
@@ -38,7 +39,7 @@ function CreateExtendedPlayer(playerId, playerIdentifier, playerGroups, playerGr
     end
 
     local stateBag = Player(self.source).state
-    stateBag:set("identifier", self.identifier, true)
+    stateBag:set("identifier", self.identifier, true)           stateBag:set("stateid", self.stateid, true)
     stateBag:set("license", self.license, true)
     stateBag:set("job", self.job, true)
     stateBag:set("duty", self.job.duty, true)
@@ -127,6 +128,12 @@ function CreateExtendedPlayer(playerId, playerIdentifier, playerGroups, playerGr
     ---@return string
     function self.getIdentifier()
         return self.identifier
+    end
+
+    ---Gets the current player stateid
+    ---@return number
+    function self.getIdentifier()
+        return self.stateid
     end
 
     ---Gets the current player's Rockstar license
