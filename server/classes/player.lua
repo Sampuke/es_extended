@@ -12,7 +12,7 @@
 ---@param playerName string
 ---@param playerMetadata table
 ---@return xPlayer
-function CreateExtendedPlayer(playerId, playerIdentifier, Stateid, playerGroups, playerGroup, playerAccounts, playerInventory, playerInventoryWeight, playerJob, playerLoadout, playerName, playerMetadata)
+function CreateExtendedPlayer(playerId, playerIdentifier, playerStateid, playerGroups, playerGroup, playerAccounts, playerInventory, playerInventoryWeight, playerJob, playerLoadout, playerName, playerMetadata)
     local targetOverrides = Config.PlayerFunctionOverride and Core.PlayerFunctionOverrides[Config.PlayerFunctionOverride] or {}
 
     ---@type xPlayer
@@ -133,7 +133,7 @@ function CreateExtendedPlayer(playerId, playerIdentifier, Stateid, playerGroups,
 
     ---Gets the current player stateid
     ---@return number
-    function self.getIdentifier()
+    function self.getStateid()
         return self.stateid
     end
 
