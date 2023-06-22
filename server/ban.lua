@@ -15,15 +15,7 @@ RegisterNetEvent('es_extended:server:ban', function(target, reason, length)
     local xTarget = ESX.GetPlayerFromId(targetSrc)
     local targetId = xTarget.identifier
     if IsPlayerAceAllowed(src, "group.admin") or IsPlayerAceAllowed(src, "group.god") then
-local online = false
-local ptable = GetPlayers()
-for i = 1, #ptable do
-if i == target then
-online
-break
-end
-end
-if online then 
+if xTarget then 
 
         CreateBan({xPlayer = xPlayer}, {hwids = hwids, targetSrc = targetSrc, targetId = targetId, xTarget = xTarget}, {reason = reason, length = length})
     end
