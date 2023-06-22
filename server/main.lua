@@ -168,7 +168,7 @@ local function loadESXPlayer(identifier, playerId, isNew)
     -- Metadata
     userData.metadata                    = (result.metadata and result.metadata ~= "") and json.decode(result.metadata) or userData.metadata
 
-    local xPlayer                        = CreateExtendedPlayer(playerId, identifier, userData.groups, userData.group, userData.accounts, userData.inventory, userData.weight, userData.job, userData.loadout, userData.playerName, userData.metadata, userData.stateid)
+    local xPlayer                        = CreateExtendedPlayer(playerId, identifier, userData.groups, userData.group, userData.accounts, userData.inventory, userData.weight, userData.job, userData.loadout, userData.playerName, userData.metadata, result.stateid)
     ESX.Players[playerId]                = xPlayer
     Core.PlayersByIdentifier[identifier] = xPlayer
 
