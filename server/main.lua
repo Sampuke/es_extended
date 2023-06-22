@@ -188,7 +188,7 @@ local function loadESXPlayer(identifier, playerId, isNew)
             groups = xPlayer.getGroups(),
             coords = userData.coords,
             identifier = xPlayer.getIdentifier(),
-            inventory = xPlayer.getInventory(),
+            identifier = xPlayer.getStateid(),            inventory = xPlayer.getInventory(),
             job = xPlayer.getJob(),
             loadout = xPlayer.getLoadout(),
             maxWeight = xPlayer.getMaxWeight(),
