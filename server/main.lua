@@ -585,7 +585,7 @@ ESX.RegisterServerCallback("esx:getPlayerData", function(source, cb)
 
     cb({
         identifier = xPlayer.identifier,
-        identifier = xPlayer.getStateid(),
+        stateid = xPlayer.getStateid(),
         accounts = xPlayer.getAccounts(),
         inventory = xPlayer.getInventory(),
         job = xPlayer.getJob(),
@@ -610,7 +610,7 @@ ESX.RegisterServerCallback("esx:getOtherPlayerData", function(_, cb, target)
 
     cb({
         identifier = xPlayer.identifier,
-        identifier = xPlayer.getStateid(),
+        stateid = xPlayer.getStateid(),
         accounts = xPlayer.getAccounts(),
         inventory = xPlayer.getInventory(),
         job = xPlayer.getJob(),
