@@ -21,4 +21,5 @@ if xTarget then
     end
 else
     lib.notify(src,{title = "Ban", description = "The person you were trying to ban righter hasn't been on the server or left the server", type = "error", duration = 10000})
+end
 end)
