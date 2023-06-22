@@ -3,7 +3,7 @@ SetGameType(Config.GameType)
 
 local oneSyncState = GetConvar("onesync", "off")
 local newPlayer = "INSERT INTO `users` SET `accounts` = ?, `identifier` = ?, `group` = ?"
-local loadPlayer = "SELECT `accounts`, `job`, `job_grade`, `job_duty`, `group`, `position`, `inventory`, `skin`, `loadout`, `metadata`"
+local loadPlayer = "SELECT `accounts`, `job`, `job_grade`, `job_duty`, `group`, `position`, `inventory`, `skin`, `loadout`, `metadata`, `stateid`"
 
 if Config.Multichar then
     newPlayer = newPlayer .. ", `firstname` = ?, `lastname` = ?, `dateofbirth` = ?, `sex` = ?, `height` = ?"
