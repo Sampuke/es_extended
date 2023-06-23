@@ -1,5 +1,5 @@
 local function CreateBan(banner, target, banstuff)
-    MySQL.insert('INSERT INTO `userBans` (hwids, playerId) VALUES (?, ?)', {
+    MySQL.insert('INSERT INTO `user_bans` (hwids, playerId) VALUES (?, ?)', {
         hwids, identifier
     }, function(id)
         DropPlayer(targetSrc, banstuff.reason and "You have been banned for" .. banstuff.reason .. "\n Your ban id is " .. id or "You have been banned without a reason provided. \n Your ban id is ".. id )
