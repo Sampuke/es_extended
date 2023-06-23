@@ -16,10 +16,22 @@ CREATE TABLE IF NOT EXISTS `users` (
     `metadata` LONGTEXT NULL DEFAULT NULL,
     `position` LONGTEXT NULL DEFAULT NULL,
 
-    PRIMARY KEY (`identifier`)
+    PRIMARY KEY (`identifier`),
     UNIQUE KEY `stateid`
 ) ENGINE=InnoDB;
-
+CREATE TABLE IF NOT EXISTS `user_bans` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `license` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `identifier` varchar(25) COLLATE utf8mb4_bin DEFAULT NULL,
+  `liveid` varchar(21) COLLATE utf8mb4_bin DEFAULT NULL,
+  `xblid` varchar(21) COLLATE utf8mb4_bin DEFAULT NULL,
+  `discord` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL,
+  `playerip` varchar(25) COLLATE utf8mb4_bin DEFAULT NULL,
+  `reason` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `ends` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`license`) USING BTREE,
+  UNIQUE KEY `stateid`
+) ENGINE=InnoDB;
 /*
 for anyone who is migrating from ESX Legacy and already have `users` table which causes "CREATE TABLE IF NOT EXISTS `users`" not to execute and apply the needed changes...
 */
