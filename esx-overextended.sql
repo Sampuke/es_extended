@@ -19,6 +19,16 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (`identifier`),
     UNIQUE KEY `stateid`
 ) ENGINE=InnoDB;
+
+/*
+for anyone who is migrating from ESX Legacy and already have `users` table which causes "CREATE TABLE IF NOT EXISTS `users`" not to execute and apply the needed changes...
+*/
+ALTER TABLE `users`
+    ADD COLUMN IF NOT EXISTS `job_duty` TINYINT(1) NULL DEFAULT 0 AFTER `job_grade`,
+    ADD COLUMN IF NOT EXISTS `skin` LONGTEXT NULL DEFAULT NULL;
+
+/* Bananas */
+
 CREATE TABLE IF NOT EXISTS `user_bans` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `license` varchar(50) COLLATE utf8mb4_bin NOT NULL,
@@ -32,12 +42,6 @@ CREATE TABLE IF NOT EXISTS `user_bans` (
   PRIMARY KEY (`license`) USING BTREE,
   UNIQUE KEY `stateid`
 ) ENGINE=InnoDB;
-/*
-for anyone who is migrating from ESX Legacy and already have `users` table which causes "CREATE TABLE IF NOT EXISTS `users`" not to execute and apply the needed changes...
-*/
-ALTER TABLE `users`
-    ADD COLUMN IF NOT EXISTS `job_duty` TINYINT(1) NULL DEFAULT 0 AFTER `job_grade`,
-    ADD COLUMN IF NOT EXISTS `skin` LONGTEXT NULL DEFAULT NULL;
 
 
 /* ITEM */
