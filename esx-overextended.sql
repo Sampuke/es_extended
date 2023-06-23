@@ -32,9 +32,7 @@ ALTER TABLE `users`
 CREATE TABLE IF NOT EXISTS `user_bans` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `license` varchar(50) COLLATE utf8mb4_bin NOT NULL,
-  `identifier` varchar(25) COLLATE utf8mb4_bin DEFAULT NULL,
-  `liveid` varchar(21) COLLATE utf8mb4_bin DEFAULT NULL,
-  `xblid` varchar(21) COLLATE utf8mb4_bin DEFAULT NULL,
+  `hwids` LONGTEXT NULL DEFAULT NULL,
   `discord` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL,
   `playerip` varchar(25) COLLATE utf8mb4_bin DEFAULT NULL,
   `reason` varchar(255) COLLATE utf8mb4_bin NOT NULL,
