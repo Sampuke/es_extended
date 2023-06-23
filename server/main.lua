@@ -3,7 +3,7 @@ SetGameType(Config.GameType)
 
 local oneSyncState = GetConvar("onesync", "off")
 local newPlayer = "INSERT INTO `users` SET `accounts` = ?, `identifier` = ?, `group` = ?"
-local loadPlayer = "SELECT `accounts`, `job`, `job_grade`, `job_duty`, `group`, `position`, `inventory`, `skin`, `loadout`, `metadata`"
+local loadPlayer = "SELECT `accounts`, `job`, `job_grade`, `job_duty`, `group`, `position`, `inventory`, `skin`, `loadout`, `metadata`, `stateid`"
 
 if Config.Multichar then
     newPlayer = newPlayer .. ", `firstname` = ?, `lastname` = ?, `dateofbirth` = ?, `sex` = ?, `height` = ?"
@@ -168,7 +168,7 @@ local function loadESXPlayer(identifier, playerId, isNew)
     -- Metadata
     userData.metadata                    = (result.metadata and result.metadata ~= "") and json.decode(result.metadata) or userData.metadata
 
-    local xPlayer                        = CreateExtendedPlayer(playerId, identifier, userData.groups, userData.group, userData.accounts, userData.inventory, userData.weight, userData.job, userData.loadout, userData.playerName, userData.metadata)
+    local xPlayer                        = CreateExtendedPlayer(playerId, identifier,  result.stateid, userData.groups, userData.group, userData.accounts, userData.inventory, userData.weight, userData.job, userData.loadout, userData.playerName, userData.metadata)
     ESX.Players[playerId]                = xPlayer
     Core.PlayersByIdentifier[identifier] = xPlayer
 
@@ -188,6 +188,7 @@ local function loadESXPlayer(identifier, playerId, isNew)
             groups = xPlayer.getGroups(),
             coords = userData.coords,
             identifier = xPlayer.getIdentifier(),
+            stateid = result.stateid,
             inventory = xPlayer.getInventory(),
             job = xPlayer.getJob(),
             loadout = xPlayer.getLoadout(),
@@ -584,6 +585,7 @@ ESX.RegisterServerCallback("esx:getPlayerData", function(source, cb)
 
     cb({
         identifier = xPlayer.identifier,
+        stateid = xPlayer.getStateid(),
         accounts = xPlayer.getAccounts(),
         inventory = xPlayer.getInventory(),
         job = xPlayer.getJob(),
@@ -608,6 +610,7 @@ ESX.RegisterServerCallback("esx:getOtherPlayerData", function(_, cb, target)
 
     cb({
         identifier = xPlayer.identifier,
+        stateid = xPlayer.getStateid(),
         accounts = xPlayer.getAccounts(),
         inventory = xPlayer.getInventory(),
         job = xPlayer.getJob(),

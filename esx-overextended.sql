@@ -4,6 +4,7 @@ ALTER DATABASE DEFAULT COLLATE UTF8MB4_UNICODE_CI;
 /* USER */
 CREATE TABLE IF NOT EXISTS `users` (
     `identifier` VARCHAR(60) NOT NULL,
+    `stateid` INT NOT NULL AUTO_INCREMENT,
     `accounts` LONGTEXT NULL DEFAULT NULL,
     `group` VARCHAR(50) NULL DEFAULT "user",
     `job` VARCHAR(20) NULL DEFAULT "unemployed",
@@ -16,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `position` LONGTEXT NULL DEFAULT NULL,
 
     PRIMARY KEY (`identifier`)
+    UNIQUE KEY `stateid`
 ) ENGINE=InnoDB;
 
 /*
